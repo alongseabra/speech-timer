@@ -14,6 +14,7 @@
 		2A3DDF5E1ACF92E900EC9EF7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3DDF5C1ACF92E900EC9EF7 /* LaunchScreen.xib */; };
 		2A3DDF6A1ACF92E900EC9EF7 /* SpeechTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3DDF691ACF92E900EC9EF7 /* SpeechTimerTests.swift */; };
 		2AA70DD21AD0435C00D6136A /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA70DD11AD0435C00D6136A /* SetupViewController.swift */; };
+		2AA70DD41AD04B0500D6136A /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA70DD31AD04B0500D6136A /* CheckBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		2A3DDF681ACF92E900EC9EF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A3DDF691ACF92E900EC9EF7 /* SpeechTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTimerTests.swift; sourceTree = "<group>"; };
 		2AA70DD11AD0435C00D6136A /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		2AA70DD31AD04B0500D6136A /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				2A3DDF531ACF92E900EC9EF7 /* AppDelegate.swift */,
 				2A3DDF551ACF92E900EC9EF7 /* ViewController.swift */,
 				2A3DDF571ACF92E900EC9EF7 /* Main.storyboard */,
+				2AA70DD31AD04B0500D6136A /* CheckBox.swift */,
 				2AA70DD11AD0435C00D6136A /* SetupViewController.swift */,
 				2A3DDF5A1ACF92E900EC9EF7 /* Images.xcassets */,
 				2A3DDF5C1ACF92E900EC9EF7 /* LaunchScreen.xib */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AA70DD41AD04B0500D6136A /* CheckBox.swift in Sources */,
 				2A3DDF561ACF92E900EC9EF7 /* ViewController.swift in Sources */,
 				2AA70DD21AD0435C00D6136A /* SetupViewController.swift in Sources */,
 				2A3DDF541ACF92E900EC9EF7 /* AppDelegate.swift in Sources */,
