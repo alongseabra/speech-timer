@@ -25,18 +25,18 @@
                                     <segue destination="4by-ic-xZc" kind="modal" id="NJj-uu-0uZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-f8-taw">
-                                <rect key="frame" x="95" y="481" width="130" height="30"/>
-                                <state key="normal" title="@ansonlongseabra">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="TimeMe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRr-qy-97e">
                                 <rect key="frame" x="81" y="114" width="159" height="79"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-f8-taw">
+                                <rect key="frame" x="95" y="481" width="130" height="30"/>
+                                <state key="normal" title="@ansonlongseabra">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -47,15 +47,21 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1sD-f8-taw" secondAttribute="bottom" constant="57" id="pUc-wc-Od7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Byc-vu-RDo"/>
+                    <connections>
+                        <outlet property="LogoLabel" destination="zRr-qy-97e" id="6tS-k7-bpB"/>
+                        <outlet property="MoreInfoButton" destination="1sD-f8-taw" id="baD-aG-ZJ6"/>
+                        <outlet property="TimeMeButton" destination="wcB-HQ-2iR" id="7uk-vA-zhZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="366"/>
         </scene>
-        <!--View Controller-->
+        <!--Setup View Controller-->
         <scene sceneID="lso-py-hp1">
             <objects>
-                <viewController id="4by-ic-xZc" sceneMemberID="viewController">
+                <viewController id="4by-ic-xZc" customClass="SetupViewController" customModule="SpeechTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rZ2-ix-U8x"/>
                         <viewControllerLayoutGuide type="bottom" id="adQ-Vi-RfI"/>
@@ -63,12 +69,45 @@
                     <view key="view" contentMode="scaleToFill" id="Wjz-Zc-BkL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFk-ab-RIi">
+                                <rect key="frame" x="16" y="28" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="modal" id="Jw9-pQ-iSp"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2dp-Ot-5ln"/>
+                    <connections>
+                        <outlet property="BackButton" destination="gFk-ab-RIi" id="Ev3-Ap-yjM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fjb-sM-bLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="622.39999999999998" y="366.36000000000001"/>
+            <point key="canvasLocation" x="763" y="366"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wbu-iG-998">
+            <objects>
+                <viewController id="Ocy-oD-rHK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n2s-93-dRa"/>
+                        <viewControllerLayoutGuide type="bottom" id="qBP-1r-5fq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qn1-oG-F7P">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yTc-f8-sx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1206" y="366"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
