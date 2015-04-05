@@ -14,9 +14,12 @@ class SetupViewController: UIViewController {
 
     @IBOutlet weak var BackButton: UIButton!
     
+    lazy var manualChoice = ChoiceView(frame: CGRectMake(0, 100, 200, 50));
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.view.addSubview(manualChoice);
     }
     
     override func didReceiveMemoryWarning() {

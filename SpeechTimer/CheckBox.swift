@@ -28,14 +28,19 @@ class CheckBox: UIButton {
     
     lazy var uncheckedImage : UIImage = UIImage(named: "unchecked")!;
     
-    override func awakeFromNib() {
+    
+    override init(frame: CGRect) {
         
         self.isChecked = false;
+        
+        super.init(frame: frame);
+        
+        self.frame = frame;
         
         self.setImage(uncheckedImage, forState: .Normal);
         
         self.addTarget(self, action: "buttonClicked", forControlEvents: UIControlEvents.TouchUpInside);
-
+        
     }
     
     func buttonClicked () {
@@ -44,7 +49,7 @@ class CheckBox: UIButton {
     
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required  init(coder aDecoder: NSCoder) {
         self.isChecked = false;
         super.init(coder: aDecoder)
         self.setImage(uncheckedImage, forState: .Normal);
