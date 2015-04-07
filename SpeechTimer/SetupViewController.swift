@@ -14,12 +14,19 @@ class SetupViewController: UIViewController {
 
     @IBOutlet weak var BackButton: UIButton!
     
-    lazy var manualChoice = ChoiceView(frame: CGRectMake(0, 100, 200, 50));
+    
+    //The view containing items that indicate the user would like to stop
+    //the timer manually
+    lazy var manualChoice = ChoiceView(frame: CGRectMake(0, 100, 480, 120));
+    
+    //lazy var automaticChoice = ChoiceView(frame: CGRectMake(0, 50, 200, 50));
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        self.view.addSubview(manualChoice);
+        self.view.addSubview(self.manualChoice);
+        //self.view.addSubview(self.automaticChoice);
     }
     
     override func didReceiveMemoryWarning() {
