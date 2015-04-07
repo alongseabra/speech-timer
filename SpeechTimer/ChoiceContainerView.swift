@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChoiceContainerView: UIView {
+class ChoiceContainerView: UIView{
     
     var choiceViews : [ChoiceView];
     var selectedChoice : ChoiceView!;
@@ -19,6 +19,7 @@ class ChoiceContainerView: UIView {
         super.init(frame: frame);
         
     }
+
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -9,7 +9,7 @@
 import UIKit
 
 //Represents a choice, which is a CheckBox and UILabel
-class ChoiceView: UIView {
+class ChoiceView: UIView, CheckBoxDelegate {
     
     //The percentage of the total width that the label takes up
     let labelRatio : CGFloat = 0.75;
@@ -53,8 +53,13 @@ class ChoiceView: UIView {
         
         
         self.backgroundColor = UIColor.blueColor();
-        
+        self.checkBox.delegate = self;
     }
+    
+    func checkBoxSelected() {
+        print("this is working!");
+    }
+    
     
 
 

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CheckBoxDelegate {
+    
+    func checkBoxSelected();
+}
 
 //A simple checkbox button
 class CheckBox: UIButton {
@@ -28,6 +32,8 @@ class CheckBox: UIButton {
     
     lazy var uncheckedImage : UIImage = UIImage(named: "unchecked")!;
     
+    var delegate : CheckBoxDelegate?;
+    
     
     override init(frame: CGRect) {
         
@@ -45,7 +51,8 @@ class CheckBox: UIButton {
     
     func buttonClicked () {
     
-    self.isChecked = !self.isChecked;
+        self.isChecked = !self.isChecked;
+        self.delegate?.checkBoxSelected();
     
     }
     
