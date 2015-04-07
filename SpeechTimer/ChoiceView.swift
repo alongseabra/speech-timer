@@ -22,8 +22,10 @@ class ChoiceView: UIView {
     var labelWidth : CGFloat;
     var labelHeight : CGFloat;
     
+    //A description of what the choice represents
+    var choice : String;
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, choice: String) {
         
         //setup the checkbox
         self.checkBoxWidth = frame.size.height *  0.25;
@@ -42,10 +44,13 @@ class ChoiceView: UIView {
         self.label = UILabel(frame: CGRectMake(frame.size.width * 0.25, 0, labelWidth, labelHeight));
         self.label.backgroundColor = UIColor.redColor();
         
+        self.choice = choice;
+        
         super.init(frame: frame);
     
         self.addSubview(self.checkBoxContainerView);
         self.addSubview(self.label);
+        
         
         self.backgroundColor = UIColor.blueColor();
         

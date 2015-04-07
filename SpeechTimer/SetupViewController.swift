@@ -17,7 +17,7 @@ class SetupViewController: UIViewController {
     
     //The view containing items that indicate the user would like to stop
     //the timer manually
-    lazy var manualChoice = ChoiceView(frame: CGRectMake(0, 100, 480, 120));
+    lazy var manualChoice = ChoiceView(frame: CGRectMake(0, 100, 480, 120), choice: "manual");
     
     //lazy var automaticChoice = ChoiceView(frame: CGRectMake(0, 50, 200, 50));
     
