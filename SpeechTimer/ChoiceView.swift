@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ChoiceViewDelegate {
+    func choiceViewSelected(ChoiceView)
+}
+
 //Represents a choice, which is a CheckBox and UILabel
 class ChoiceView: UIView, CheckBoxDelegate {
     
@@ -25,8 +29,12 @@ class ChoiceView: UIView, CheckBoxDelegate {
     //A description of what the choice represents
     var choice : String;
     
+    //set up delegate(s)
+    var delegate : ChoiceViewDelegate?;
+    
     init(frame: CGRect, choice: String) {
         
+
         //setup the checkbox
         self.checkBoxWidth = frame.size.height *  0.25;
         self.checkBox = CheckBox(frame: CGRectMake(frame.size.width / 8.0, frame.size.height / 3.0,
@@ -56,11 +64,13 @@ class ChoiceView: UIView, CheckBoxDelegate {
         self.checkBox.delegate = self;
     }
     
+    //fired when the checkbox is tapped (button up)
     func checkBoxSelected() {
-        print("this is working!");
+        
+        //tell our containing view we have been chosen
+        self.delegate?.choiceViewSelected(self);
+        
     }
-    
-    
 
 
     required init(coder aDecoder: NSCoder) {
