@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A06DF4B1AD99B450097B047 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06DF4A1AD99B450097B047 /* TimerViewController.swift */; };
 		2A0E79481AD3719E0062424B /* PositioningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E79471AD3719E0062424B /* PositioningView.swift */; };
 		2A0E794A1AD378500062424B /* ChoiceContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E79491AD378500062424B /* ChoiceContainerView.swift */; };
 		2A3DDF541ACF92E900EC9EF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3DDF531ACF92E900EC9EF7 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A06DF4A1AD99B450097B047 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		2A0E79471AD3719E0062424B /* PositioningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositioningView.swift; sourceTree = "<group>"; };
 		2A0E79491AD378500062424B /* ChoiceContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceContainerView.swift; sourceTree = "<group>"; };
 		2A3DDF4E1ACF92E800EC9EF7 /* SpeechTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeechTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,12 +90,13 @@
 			isa = PBXGroup;
 			children = (
 				2A3DDF531ACF92E900EC9EF7 /* AppDelegate.swift */,
-				2A3DDF551ACF92E900EC9EF7 /* ViewController.swift */,
 				2A3DDF571ACF92E900EC9EF7 /* Main.storyboard */,
 				2AA70DD51AD07F0900D6136A /* ChoiceView.swift */,
 				2A0E79491AD378500062424B /* ChoiceContainerView.swift */,
 				2A0E79471AD3719E0062424B /* PositioningView.swift */,
 				2AA70DD31AD04B0500D6136A /* CheckBox.swift */,
+				2A3DDF551ACF92E900EC9EF7 /* ViewController.swift */,
+				2A06DF4A1AD99B450097B047 /* TimerViewController.swift */,
 				2AA70DD11AD0435C00D6136A /* SetupViewController.swift */,
 				2A3DDF5A1ACF92E900EC9EF7 /* Images.xcassets */,
 				2A3DDF5C1ACF92E900EC9EF7 /* LaunchScreen.xib */,
@@ -231,6 +234,7 @@
 				2A3DDF561ACF92E900EC9EF7 /* ViewController.swift in Sources */,
 				2A0E794A1AD378500062424B /* ChoiceContainerView.swift in Sources */,
 				2AA70DD61AD07F0900D6136A /* ChoiceView.swift in Sources */,
+				2A06DF4B1AD99B450097B047 /* TimerViewController.swift in Sources */,
 				2AA70DD21AD0435C00D6136A /* SetupViewController.swift in Sources */,
 				2A0E79481AD3719E0062424B /* PositioningView.swift in Sources */,
 				2A3DDF541ACF92E900EC9EF7 /* AppDelegate.swift in Sources */,
