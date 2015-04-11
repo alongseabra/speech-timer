@@ -17,19 +17,26 @@ class SetupViewController: UIViewController {
     
     //The view containing items that indicate the user would like to stop
     //the timer manually
-    lazy var manualChoice = ChoiceView(frame: CGRectMake(0, 0, 480, 120), choice: "manual");
-    lazy var choiceContainerView = ChoiceContainerView(frame: CGRectMake(0, 100, 480, 120));
+    var manualChoice : ChoiceView?;
+    var automaticChoice : ChoiceView?;
+    var choiceContainerView : ChoiceContainerView?;
     
-    //lazy var automaticChoice = ChoiceView(frame: CGRectMake(0, 50, 200, 50));
     
     override func viewDidLoad() {
         
-        super.viewDidLoad()
+        super.viewDidLoad();
+        self.choiceContainerView = ChoiceContainerView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 4));
+        self.manualChoice = ChoiceView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 8), choice: "manual");
+        self.automaticChoice = ChoiceView(frame: CGRectMake(0, self.view.frame.size.height / 8,
+                                                            self.view.frame.size.width, self.view.frame.size.height / 8 ),
+                                          choice: "automatic");
+
+        self.choiceContainerView?.addChoiceView(self.manualChoice!);
+        self.choiceContainerView?.addChoiceView(self.automaticChoice!);
+        self.view.addSubview(self.choiceContainerView!);
+
         
-        self.choiceContainerView.addSubview(self.manualChoice);
-        self.view.addSubview(self.choiceContainerView);
-        
-        self.choiceContainerView.addChoiceView(self.manualChoice);
+
     }
     
     override func didReceiveMemoryWarning() {

@@ -16,10 +16,11 @@ class ChoiceContainerView: UIView, ChoiceViewDelegate{
     var selectedChoice : ChoiceView!;
     
     //all ChoiceViews contained in this class
-    var choices : [ChoiceView]?;
+    var choices : [ChoiceView];
     
     override init(frame: CGRect) {
 
+        self.choices = [ChoiceView]();
         super.init(frame: frame);
         
     }
@@ -29,15 +30,23 @@ class ChoiceContainerView: UIView, ChoiceViewDelegate{
     func addChoiceView(choiceView : ChoiceView)
     {
         self.addSubview(choiceView);
-        self.choices?.append(choiceView);
+        self.choices.append(choiceView);
         choiceView.delegate = self;
     }
     
     
-    
+    //Each time a different ChoiceView is seleced, we uncheck
+    //the other ones and set selectedChoice to the current selection
     func choiceViewSelected(view : ChoiceView)
     {
-        print(view.choice + " was selected");
+        self.selectedChoice = view;
+        for row in self.choices {
+            if (row.choice != view.choice) {
+                row.checkBox.isChecked = false;
+            }
+        
+        }
+        
     }
     
     required init(coder aDecoder: NSCoder) {
