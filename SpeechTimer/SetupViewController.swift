@@ -26,13 +26,13 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     var finishTimeStepper : UIStepper?;
     
     
-    var nums : [String] = ["5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
+    @IBOutlet weak var ContinueButton: UIButton!
 
     
     override func viewDidLoad() {
         
         super.viewDidLoad();
-        self.choiceContainerView = ChoiceContainerView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 4));
+        self.choiceContainerView = ChoiceContainerView(frame: CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height / 4));
         self.manualChoice = ChoiceView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 8), choice: "manual");
         self.automaticChoice = ChoiceView(frame: CGRectMake(0, self.view.frame.size.height / 8,
                                                             self.view.frame.size.width, self.view.frame.size.height / 8 ),
@@ -46,7 +46,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         self.view.addSubview(self.choiceContainerView!);
         
         
-        self.finishTimeLabelContainerView = UIView(frame: CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, self.view.frame.size.height / 2));
+        self.finishTimeLabelContainerView = UIView(frame: CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, self.view.frame.size.height / 8));
         self.finishTimeLabel = UILabel(frame:
             CGRectMake(0, 0, self.view.frame.size.width * 0.75, self.view.frame.size.height / 8));
         
@@ -58,6 +58,8 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         self.finishTimeLabelContainerView?.addSubview(self.finishTimeStepper!);
         self.finishTimeStepper?.addTarget(self, action: "tapperPressed", forControlEvents: .TouchUpInside);
         updateFinishTimeLabel();
+    
+        self.choiceContainerView?.choices[0].checkBox.isChecked = true;
         
         setDelegates();
 
