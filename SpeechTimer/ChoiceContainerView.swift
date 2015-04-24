@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ChoiceContainerViewDelegate {
+    
+    func choiceViewSelected(ChoiceView);
+    
+}
 
 //Contains ChoiceViews. Only one can be selected at a time, like a radio button
 class ChoiceContainerView: UIView, ChoiceViewDelegate{
@@ -17,6 +22,8 @@ class ChoiceContainerView: UIView, ChoiceViewDelegate{
     
     //all ChoiceViews contained in this class
     var choices : [ChoiceView];
+    
+    var delegate : ChoiceContainerViewDelegate?;
     
     override init(frame: CGRect) {
 
@@ -40,6 +47,8 @@ class ChoiceContainerView: UIView, ChoiceViewDelegate{
     func choiceViewSelected(view : ChoiceView)
     {
         self.selectedChoice = view;
+        self.delegate?.choiceViewSelected(self.selectedChoice);
+        
         for row in self.choices {
             if (row.choice != view.choice) {
                 row.checkBox.isChecked = false;

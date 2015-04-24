@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SetupViewController: UIViewController, UIPickerViewDelegate {
+class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContainerViewDelegate {
     
 
     @IBOutlet weak var BackButton: UIButton!
@@ -23,7 +23,8 @@ class SetupViewController: UIViewController, UIPickerViewDelegate {
     
     var finishTimeLabelContainerView : UIView?;
     var finishTimeLabel : UILabel?;
-    var finishTimePicker : UIPickerView?;
+    var finishTimeStepper : UIStepper?;
+    
     
     var nums : [String] = ["5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
 
@@ -44,27 +45,52 @@ class SetupViewController: UIViewController, UIPickerViewDelegate {
         self.automaticChoice?.label.text = "Automatic";
         self.view.addSubview(self.choiceContainerView!);
         
-        self.finishTimePicker = UIPickerView(frame: CGRectMake(0, 300, 50, 50));
-        self.finishTimePicker?.delegate = self;
-        self.view.addSubview(self.finishTimePicker!);
         
+        self.finishTimeLabelContainerView = UIView(frame: CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, self.view.frame.size.height / 2));
+        self.finishTimeLabel = UILabel(frame:
+            CGRectMake(0, 0, self.view.frame.size.width * 0.75, self.view.frame.size.height / 8));
+        
+        self.finishTimeLabel?.backgroundColor = UIColor.greenColor();
+        self.view.addSubview(finishTimeLabelContainerView!);
+        self.finishTimeLabelContainerView?.addSubview(self.finishTimeLabel!);
+        
+        self.finishTimeStepper = UIStepper(frame: CGRectMake(self.view.frame.size.width * 0.75, 50, 100, 50));
+        self.finishTimeLabelContainerView?.addSubview(self.finishTimeStepper!);
+        self.finishTimeStepper?.addTarget(self, action: "tapperPressed", forControlEvents: .TouchUpInside);
+        updateFinishTimeLabel();
+        
+        setDelegates();
 
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
-        return 1;
+    func choiceViewSelected(ChoiceView) {
+        print("high level") ;
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       
-        return self.nums.count;
-        
+    func setDelegates()
+    {
+        self.choiceContainerView?.delegate = self;
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        
-        return self.nums[row];
+    func tapperPressed()
+    {
+        updateFinishTimeLabel();
     }
+    
+    func updateFinishTimeLabel()
+    {
+        var value = self.finishTimeStepper?.value;
+        var stepperValue : String = String(format:"%.f", value!);
+        self.finishTimeLabel?.text = "I want the timer to stop after \(stepperValue) seconds";
+    }
+    
+    func disableFinishTimeLabel()
+    {
+        self.finishTimeLabelContainerView?.userInteractionEnabled = false;
+        self.finishTimeLabelContainerView?.alpha = 0.5;
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
