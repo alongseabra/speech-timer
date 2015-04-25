@@ -9,8 +9,9 @@
 import UIKit
 
 protocol ChoiceContainerViewDelegate {
-    
-    func choiceViewSelected(ChoiceView);
+    //send the selected choiceView to the ViewController
+    //that contains this object
+    func choiceViewSelected(chioceView: ChoiceView);
     
 }
 
@@ -48,7 +49,7 @@ class ChoiceContainerView: UIView, ChoiceViewDelegate{
     {
         self.selectedChoice = view;
         self.delegate?.choiceViewSelected(self.selectedChoice);
-        
+
         for row in self.choices {
             if (row.choice != view.choice) {
                 row.checkBox.isChecked = false;

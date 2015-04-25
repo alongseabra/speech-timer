@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 protocol CheckBoxDelegate {
     
     func checkBoxSelected();
@@ -22,6 +23,9 @@ class CheckBox: UIButton {
         didSet{
             if (isChecked == true) {
                 self.setImage(checkedImage, forState: .Normal);
+                self.delegate?.checkBoxSelected();
+                print("checked");
+
             } else {
                 self.setImage(uncheckedImage, forState: .Normal);
             }
@@ -52,7 +56,6 @@ class CheckBox: UIButton {
     func buttonClicked () {
     
         self.isChecked = !self.isChecked;
-        self.delegate?.checkBoxSelected();
     
     }
     

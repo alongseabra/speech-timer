@@ -9,6 +9,9 @@
 
 import UIKit
 
+/**
+The ViewController for the setup scene
+**/
 class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContainerViewDelegate {
     
 
@@ -18,10 +21,18 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     //The view containing items that indicate the user would like to stop
     //the timer manually
     var manualChoice : ChoiceView?;
+    
+    //The view containing items that indicate the user would like to stop
+    //the timer automatically
     var automaticChoice : ChoiceView?;
+    
+    //The view containing the choices
     var choiceContainerView : ChoiceContainerView?;
     
+    
+    //Contains view that has automatic time options
     var finishTimeLabelContainerView : UIView?;
+    
     var finishTimeLabel : UILabel?;
     var finishTimeStepper : UIStepper?;
     
@@ -30,9 +41,13 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
 
     
     override func viewDidLoad() {
-        
+
         super.viewDidLoad();
+
         self.choiceContainerView = ChoiceContainerView(frame: CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height / 4));
+        
+        setDelegates();
+
         self.manualChoice = ChoiceView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 8), choice: "manual");
         self.automaticChoice = ChoiceView(frame: CGRectMake(0, self.view.frame.size.height / 8,
                                                             self.view.frame.size.width, self.view.frame.size.height / 8 ),
@@ -60,13 +75,12 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         updateFinishTimeLabel();
     
         self.choiceContainerView?.choices[0].checkBox.isChecked = true;
-        
-        setDelegates();
+
 
     }
     
-    func choiceViewSelected(ChoiceView) {
-        print("high level") ;
+    func choiceViewSelected(choiceView: ChoiceView) {
+        print(choiceView.choice);
     }
     
     func setDelegates()

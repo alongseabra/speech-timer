@@ -9,6 +9,8 @@
 import UIKit
 
 protocol ChoiceViewDelegate {
+    //when this choiceView has a checkbox selected, we will send
+    //ourselves to our containing view
     func choiceViewSelected(ChoiceView)
 }
 
@@ -69,6 +71,7 @@ class ChoiceView: UIView, CheckBoxDelegate {
         
         //tell our containing view we have been chosen
         self.delegate?.choiceViewSelected(self);
+        print("workin");
         
     }
 
