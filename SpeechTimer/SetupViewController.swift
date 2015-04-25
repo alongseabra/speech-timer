@@ -71,7 +71,9 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         
         self.finishTimeStepper = UIStepper(frame: CGRectMake(self.view.frame.size.width * 0.75, 50, 100, 50));
         self.finishTimeLabelContainerView?.addSubview(self.finishTimeStepper!);
-        self.finishTimeStepper?.addTarget(self, action: "tapperPressed", forControlEvents: .TouchUpInside);
+        self.finishTimeStepper?.addTarget(self, action: "stepperPressed", forControlEvents: .TouchUpInside);
+        
+        //call initially to set value
         updateFinishTimeLabel();
     
         self.choiceContainerView?.choices[0].checkBox.isChecked = true;
@@ -79,16 +81,18 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
 
     }
     
+    //Highest level of delegation chain, checkbox has been checked
     func choiceViewSelected(choiceView: ChoiceView) {
         print(choiceView.choice);
     }
+    
     
     func setDelegates()
     {
         self.choiceContainerView?.delegate = self;
     }
     
-    func tapperPressed()
+    func stepperPressed()
     {
         updateFinishTimeLabel();
     }

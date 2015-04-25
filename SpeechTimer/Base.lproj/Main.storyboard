@@ -128,14 +128,40 @@
                                     <segue destination="4by-ic-xZc" kind="modal" id="0tG-VX-Vai"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-wE-YBb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-wE-YBb">
                                 <rect key="frame" x="49" y="140" width="223" height="255"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-gL-HAL">
+                                <rect key="frame" x="101" y="469" width="118" height="79"/>
+                                <state key="normal" title="STOP">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stop" destination="Ocy-oD-rHK" eventType="touchUpInside" id="Jri-Vi-uBJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPg-XG-3Hn">
+                                <rect key="frame" x="101" y="391" width="118" height="79"/>
+                                <state key="normal" title="START">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="start" destination="Ocy-oD-rHK" eventType="touchUpInside" id="85P-Sq-juC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jml-wE-YBb" secondAttribute="trailing" constant="32" id="0gQ-fB-8XJ"/>
+                            <constraint firstItem="DPg-XG-3Hn" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="85" id="NCo-0H-fKx"/>
+                            <constraint firstItem="Jml-wE-YBb" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="Ybw-WR-4Yj"/>
+                            <constraint firstItem="2G4-gL-HAL" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="85" id="hE4-lg-9zM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2G4-gL-HAL" secondAttribute="trailing" constant="85" id="ieh-wT-Swi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DPg-XG-3Hn" secondAttribute="trailing" constant="85" id="oGm-MG-JcI"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="displayTimeLabel" destination="Jml-wE-YBb" id="RBj-2z-HFf"/>

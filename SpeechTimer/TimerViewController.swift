@@ -30,13 +30,12 @@ class TimerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad();
-        start();
     }
     
     
     //Starts the timer
-    func start() {
-        
+    @IBAction func start()
+    {
         
         let aSelector : Selector = "updateTime";
         
@@ -45,6 +44,11 @@ class TimerViewController: UIViewController {
         self.startTime = NSDate.timeIntervalSinceReferenceDate();
         
         
+    }
+    
+    @IBAction func stop()
+    {
+        self.timer.invalidate();
     }
     
     //Updates the timer each second
