@@ -13,7 +13,10 @@ import UIKit
 The ViewController for the setup scene
 **/
 class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContainerViewDelegate {
-    
+
+
+
+
 
     @IBOutlet weak var BackButton: UIButton!
     
@@ -35,6 +38,8 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     
     var finishTimeLabel : UILabel?;
     var finishTimeStepper : UIStepper?;
+    
+    var userWantsManual : Bool?;
     
     
     @IBOutlet weak var ContinueButton: UIButton!
@@ -81,9 +86,28 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
 
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toTimer")
+        {
+            var dVC : TimerViewController = segue.destinationViewController as TimerViewController;
+            if (self.userWantsManual!) {
+                dVC.mode = "manual";
+            } else {
+                dVC.mode = "automatic";
+            }
+        }
+    }
+
+    
     //Highest level of delegation chain, checkbox has been checked
     func choiceViewSelected(choiceView: ChoiceView) {
-        print(choiceView.choice);
+        
+        if (choiceView.choice == "manual") {
+            self.userWantsManual = true;
+        } else {
+            self.userWantsManual = false;
+        }
+    
     }
     
     

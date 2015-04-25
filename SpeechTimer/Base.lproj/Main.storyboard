@@ -87,7 +87,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ocy-oD-rHK" kind="modal" id="0T6-wc-CUd"/>
+                                    <segue destination="Ocy-oD-rHK" kind="modal" identifier="toTimer" id="0T6-wc-CUd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -152,6 +152,12 @@
                                     <action selector="start" destination="Ocy-oD-rHK" eventType="touchUpInside" id="85P-Sq-juC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Automatic Stop On" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-oN-TMp">
+                                <rect key="frame" x="87" y="362" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -164,7 +170,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoStopIndicator" destination="cQX-oN-TMp" id="7CA-pb-TzR"/>
                         <outlet property="displayTimeLabel" destination="Jml-wE-YBb" id="RBj-2z-HFf"/>
+                        <outlet property="startButton" destination="2G4-gL-HAL" id="ySv-QU-49x"/>
+                        <outlet property="stopButton" destination="2G4-gL-HAL" id="7qv-el-BO1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTc-f8-sx0" userLabel="First Responder" sceneMemberID="firstResponder"/>

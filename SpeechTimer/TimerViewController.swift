@@ -16,9 +16,15 @@ class TimerViewController: UIViewController {
     //The actual time that is displayed
     @IBOutlet weak var displayTimeLabel: UILabel!;
     
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var autoStopIndicator: UILabel!
+    
+    var mode : String?;
+    
     //The date-time the timer is started
     var startTime = NSDate.timeIntervalSinceReferenceDate();
-    
+
     //The timer that "listens" for when input noise dies down, if
     //user should excersize this option
     var inputTimer = NSTimer();
@@ -26,11 +32,21 @@ class TimerViewController: UIViewController {
     //The timer that keeps time
     var timer = NSTimer();
 
-
+    
 
     override func viewDidLoad() {
+        if (self.mode != nil) {
+            if (self.mode == "automatic") {
+                self.autoStopIndicator.textColor = UIColor.redColor();
+            } else {
+                self.autoStopIndicator.hidden = true;
+            }
+
+        } else {
+            print("mode is nil");
+        }
         super.viewDidLoad();
-    }
+   }
     
     
     //Starts the timer
