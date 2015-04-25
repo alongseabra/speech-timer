@@ -152,8 +152,14 @@
                                     <action selector="start" destination="Ocy-oD-rHK" eventType="touchUpInside" id="85P-Sq-juC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Automatic Stop On" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-oN-TMp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Automatic Stop On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-oN-TMp">
                                 <rect key="frame" x="87" y="362" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Make a sound or press &quot;Start&quot; to start timing!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5u-v6-Gkk">
+                                <rect key="frame" x="72" y="68" width="177" height="106"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -163,16 +169,21 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Jml-wE-YBb" secondAttribute="trailing" constant="32" id="0gQ-fB-8XJ"/>
                             <constraint firstItem="DPg-XG-3Hn" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="85" id="NCo-0H-fKx"/>
+                            <constraint firstItem="cQX-oN-TMp" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="71" id="THM-DI-U9x"/>
                             <constraint firstItem="Jml-wE-YBb" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="Ybw-WR-4Yj"/>
                             <constraint firstItem="2G4-gL-HAL" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="85" id="hE4-lg-9zM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2G4-gL-HAL" secondAttribute="trailing" constant="85" id="ieh-wT-Swi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DPg-XG-3Hn" secondAttribute="trailing" constant="85" id="oGm-MG-JcI"/>
+                            <constraint firstItem="Q5u-v6-Gkk" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="56" id="pka-rD-0ig"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q5u-v6-Gkk" secondAttribute="trailing" constant="55" id="uvU-u5-M1j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cQX-oN-TMp" secondAttribute="trailing" constant="70" id="yHe-g1-3Y9"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="autoStopIndicator" destination="cQX-oN-TMp" id="7CA-pb-TzR"/>
                         <outlet property="displayTimeLabel" destination="Jml-wE-YBb" id="RBj-2z-HFf"/>
-                        <outlet property="startButton" destination="2G4-gL-HAL" id="ySv-QU-49x"/>
+                        <outlet property="instructionLabel" destination="Q5u-v6-Gkk" id="Br2-WO-5zt"/>
+                        <outlet property="startButton" destination="DPg-XG-3Hn" id="pSX-OR-qJP"/>
                         <outlet property="stopButton" destination="2G4-gL-HAL" id="7qv-el-BO1"/>
                     </connections>
                 </viewController>
