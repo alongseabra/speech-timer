@@ -128,12 +128,6 @@
                                     <segue destination="4by-ic-xZc" kind="modal" id="0tG-VX-Vai"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-wE-YBb">
-                                <rect key="frame" x="49" y="140" width="223" height="255"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-gL-HAL">
                                 <rect key="frame" x="101" y="469" width="118" height="79"/>
                                 <state key="normal" title="STOP">
@@ -164,6 +158,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sB4-u3-Mly">
+                                <rect key="frame" x="93" y="403" width="150" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-wE-YBb">
+                                <rect key="frame" x="49" y="140" width="223" height="255"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -183,6 +186,7 @@
                         <outlet property="autoStopIndicator" destination="cQX-oN-TMp" id="7CA-pb-TzR"/>
                         <outlet property="displayTimeLabel" destination="Jml-wE-YBb" id="RBj-2z-HFf"/>
                         <outlet property="instructionLabel" destination="Q5u-v6-Gkk" id="Br2-WO-5zt"/>
+                        <outlet property="progressTilStop" destination="sB4-u3-Mly" id="UyL-RZ-y01"/>
                         <outlet property="startButton" destination="DPg-XG-3Hn" id="pSX-OR-qJP"/>
                         <outlet property="stopButton" destination="2G4-gL-HAL" id="7qv-el-BO1"/>
                     </connections>

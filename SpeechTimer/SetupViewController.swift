@@ -32,7 +32,6 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     //The view containing the choices
     var choiceContainerView : ChoiceContainerView?;
     
-    
     //Contains view that has automatic time options
     var finishTimeLabelContainerView : UIView?;
     
@@ -41,6 +40,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     
     var userWantsManual : Bool?;
     
+    var micSensitivitySlider : UISlider?;
     
     @IBOutlet weak var ContinueButton: UIButton!
 
@@ -78,6 +78,9 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         self.finishTimeLabelContainerView?.addSubview(self.finishTimeStepper!);
         self.finishTimeStepper?.addTarget(self, action: "stepperPressed", forControlEvents: .TouchUpInside);
         
+        self.micSensitivitySlider = UISlider(frame: CGRectMake(0, 40, self.view.frame.size.width / 2, self.view.frame.size.height / 8));
+        self.view.addSubview(self.micSensitivitySlider!);
+        
         //call initially to set value
         updateFinishTimeLabel();
     
@@ -94,6 +97,9 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
                 dVC.mode = "manual";
             } else {
                 dVC.mode = "automatic";
+                var seconds = self.finishTimeStepper?.value;
+                seconds = seconds! * 100;
+                dVC.numberOfSecondsBeforeStop = Int(seconds!);
             }
         }
     }

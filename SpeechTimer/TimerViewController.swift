@@ -22,6 +22,11 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var autoStopIndicator: UILabel!
     
+    
+    @IBOutlet weak var progressTilStop: UIProgressView!
+    var numberOfSecondsBeforeStop: Int?; //total 100ths of seconds of silence before recording stops
+    var numberOfSecondsSilent: Int = 0; //total 100ths of second that app has detected since last sound
+    
     var recorder: AVAudioRecorder!
 
     
@@ -32,7 +37,9 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
 
     //The timer that "listens" for when input noise dies down, if
     //user should excersize this option
-    var inputTimer = NSTimer();
+    var inputTimer : NSTimer = NSTimer();
+    
+    var listenForSilenceTimer : NSTimer = NSTimer();
     
     //The timer that keeps time
     var timer = NSTimer();
@@ -60,47 +67,59 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         } else {
             print("mode is nil");
         }
+        
         super.viewDidLoad();
    }
     
     func levelTimerCallback()
     {
-        recorder.updateMeters();
+        self.recorder.updateMeters();
         println("Average input: \(recorder.averagePowerForChannel(0)) Peak input: \(recorder.peakPowerForChannel(0))");
-        if (recorder.peakPowerForChannel(0) > -15)
+        if (self.recorder.peakPowerForChannel(0) > -15)
         {
-            recorder.stop();
-            inputTimer.invalidate();
+            self.inputTimer.invalidate();
             start();
             
         }
+    }
+    
+    func listenForSilence()
+    {
+        self.listenForSilenceTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "levelTimerCallbackForEnd", userInfo: nil, repeats: true);
+        
     }
     
     
     //Starts the timer
     @IBAction func start()
     {
-        self.recorder.stop();
+        //self.recorder.stop();
         self.startButton.hidden = true;
         
         let aSelector : Selector = "updateTime";
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.001, target: self, selector: aSelector, userInfo: nil, repeats: true);
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true);
         
         self.startTime = NSDate.timeIntervalSinceReferenceDate();
         self.instructionLabel.hidden = true;
+        
+        if (self.mode == "automatic")
+        {
+            listenForSilence();
+        }
         
     }
     
     @IBAction func stop()
     {
         self.timer.invalidate();
+        self.listenForSilenceTimer.invalidate();
+        
     }
     
     //Updates the timer each second
     func updateTime()
     {
-        println("firing");
         var currentTime = NSDate.timeIntervalSinceReferenceDate();
         
         var elapsedTime: NSTimeInterval = currentTime - startTime;
@@ -122,6 +141,32 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         let strFraction = fraction > 9 ? String(fraction): "0" + String(fraction);
         
         self.displayTimeLabel.text = "\(strMinutes):\(strSeconds)";
+        
+    }
+    
+    func  levelTimerCallbackForEnd()
+    {
+        self.recorder.updateMeters()
+        
+        if (self.numberOfSecondsSilent >= self.numberOfSecondsBeforeStop)
+        {
+            //print("invalidating")
+            stop();
+        }
+        
+        if (self.recorder.averagePowerForChannel(0) < -25)
+        {
+            println(self.recorder.averagePowerForChannel(0))
+            self.numberOfSecondsSilent++
+            self.progressTilStop.progress = Float(numberOfSecondsSilent) / Float(numberOfSecondsBeforeStop!);
+            
+            
+        }
+        else {
+            self.numberOfSecondsSilent = 0
+            self.progressTilStop.progress = 0;
+        }
+        //println(numberOfSecondsSilent)
         
     }
     
