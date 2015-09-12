@@ -22,7 +22,7 @@ class PositioningView: UIView {
     
     func centerSubview()
     {
-        var sub : UIView = self.subviews[0] as UIView;
+        var sub : UIView = self.subviews[0] as! UIView;
         sub.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     }
 

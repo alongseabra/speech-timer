@@ -75,11 +75,12 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         self.finishTimeLabelContainerView?.addSubview(self.finishTimeLabel!);
         
         self.finishTimeStepper = UIStepper(frame: CGRectMake(self.view.frame.size.width * 0.75, 50, 100, 50));
+        self.finishTimeStepper?.minimumValue = 5.0;
+        self.finishTimeStepper?.maximumValue = 15.0;
         self.finishTimeLabelContainerView?.addSubview(self.finishTimeStepper!);
         self.finishTimeStepper?.addTarget(self, action: "stepperPressed", forControlEvents: .TouchUpInside);
         
-        self.micSensitivitySlider = UISlider(frame: CGRectMake(0, 40, self.view.frame.size.width / 2, self.view.frame.size.height / 8));
-        self.view.addSubview(self.micSensitivitySlider!);
+
         
         //call initially to set value
         updateFinishTimeLabel();
@@ -92,7 +93,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toTimer")
         {
-            var dVC : TimerViewController = segue.destinationViewController as TimerViewController;
+            var dVC : TimerViewController = segue.destinationViewController as! TimerViewController;
             if (self.userWantsManual!) {
                 dVC.mode = "manual";
             } else {
@@ -110,8 +111,10 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         
         if (choiceView.choice == "manual") {
             self.userWantsManual = true;
+            self.disableFinishTimeLabel();
         } else {
             self.userWantsManual = false;
+            self.enableFinishTimeLabel();
         }
     
     }
@@ -138,6 +141,12 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     {
         self.finishTimeLabelContainerView?.userInteractionEnabled = false;
         self.finishTimeLabelContainerView?.alpha = 0.5;
+    }
+    
+    func enableFinishTimeLabel()
+    {
+        self.finishTimeLabelContainerView?.userInteractionEnabled = true;
+        self.finishTimeLabelContainerView?.alpha = 1.0;
     }
     
     

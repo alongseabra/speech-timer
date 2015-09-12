@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -125,9 +125,15 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4by-ic-xZc" kind="modal" id="0tG-VX-Vai"/>
+                                    <segue destination="4by-ic-xZc" kind="modal" identifier="toHome" id="0tG-VX-Vai"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-wE-YBb">
+                                <rect key="frame" x="49" y="140" width="223" height="255"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-gL-HAL">
                                 <rect key="frame" x="101" y="469" width="118" height="79"/>
                                 <state key="normal" title="STOP">
@@ -158,12 +164,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sB4-u3-Mly">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sB4-u3-Mly">
                                 <rect key="frame" x="93" y="403" width="150" height="2"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-wE-YBb">
-                                <rect key="frame" x="49" y="140" width="223" height="255"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0 seconds until stop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYn-bs-3Ph">
+                                <rect key="frame" x="90" y="384" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -172,13 +178,17 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Jml-wE-YBb" secondAttribute="trailing" constant="32" id="0gQ-fB-8XJ"/>
                             <constraint firstItem="DPg-XG-3Hn" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="85" id="NCo-0H-fKx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sB4-u3-Mly" secondAttribute="trailing" constant="61" id="PpW-QK-Z1o"/>
                             <constraint firstItem="cQX-oN-TMp" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="71" id="THM-DI-U9x"/>
                             <constraint firstItem="Jml-wE-YBb" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="Ybw-WR-4Yj"/>
+                            <constraint firstItem="sB4-u3-Mly" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="77" id="aUQ-gk-KME"/>
                             <constraint firstItem="2G4-gL-HAL" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="85" id="hE4-lg-9zM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2G4-gL-HAL" secondAttribute="trailing" constant="85" id="ieh-wT-Swi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DPg-XG-3Hn" secondAttribute="trailing" constant="85" id="oGm-MG-JcI"/>
                             <constraint firstItem="Q5u-v6-Gkk" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="56" id="pka-rD-0ig"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MYn-bs-3Ph" secondAttribute="trailing" constant="58" id="rqb-A6-axX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Q5u-v6-Gkk" secondAttribute="trailing" constant="55" id="uvU-u5-M1j"/>
+                            <constraint firstItem="MYn-bs-3Ph" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="74" id="wdg-a8-NLs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cQX-oN-TMp" secondAttribute="trailing" constant="70" id="yHe-g1-3Y9"/>
                         </constraints>
                     </view>
@@ -186,6 +196,7 @@
                         <outlet property="autoStopIndicator" destination="cQX-oN-TMp" id="7CA-pb-TzR"/>
                         <outlet property="displayTimeLabel" destination="Jml-wE-YBb" id="RBj-2z-HFf"/>
                         <outlet property="instructionLabel" destination="Q5u-v6-Gkk" id="Br2-WO-5zt"/>
+                        <outlet property="progressLabel" destination="MYn-bs-3Ph" id="Vim-k7-hYu"/>
                         <outlet property="progressTilStop" destination="sB4-u3-Mly" id="UyL-RZ-y01"/>
                         <outlet property="startButton" destination="DPg-XG-3Hn" id="pSX-OR-qJP"/>
                         <outlet property="stopButton" destination="2G4-gL-HAL" id="7qv-el-BO1"/>
