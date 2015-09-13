@@ -49,7 +49,9 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     
     var listenForSilenceTimer : NSTimer = NSTimer();
     
-    var
+    var recordingPath : String?;
+    
+    
     
     @IBOutlet weak var progressLabel: UILabel!
     //The timer that keeps time
@@ -59,6 +61,10 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     
 
     override func viewDidAppear(animated: Bool) {
+        
+        if ((self.recorder) != nil) {
+            recorder.deleteRecording();
+        }
         setupRecorder();
         
         var error: NSError?;
@@ -216,20 +222,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     
     //Sets up the recorder we'll be using to record sounds
     func setupRecorder() {
-        
-        var format = NSDateFormatter();
-        format.dateFormat="yyyy-MM-dd-HH-mm-ss";
-        var currentFileName = "recording-\(format.stringFromDate(NSDate(timeIntervalSinceNow: 0.0))).m4a";
-        
-        var dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true);
-        var docsDir: AnyObject = dirPaths[0];
-        var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName);
-        var soundFileURL = NSURL(fileURLWithPath: soundFilePath);
-        let filemanager = NSFileManager.defaultManager();
-        if filemanager.fileExistsAtPath(soundFilePath) {
-            // probably won't happen. want to do something about it?
-        }
-        
+    
         var recordSettings = [
             AVFormatIDKey: kAudioFormatAppleLossless,
             AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
@@ -238,7 +231,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
             AVSampleRateKey : 44100.0
         ];
         var error: NSError?;
-        self.recorder = AVAudioRecorder(URL: soundFileURL, settings: recordSettings as [NSObject : AnyObject], error: &error);
+        self.recorder = AVAudioRecorder(URL: NSURL.fileURLWithPath("/dev/null"), settings: recordSettings as [NSObject : AnyObject], error: &error);
         
         if let e = error {
             println(e.localizedDescription);
@@ -260,6 +253,8 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         if (segue.identifier == "toHome")
         {
             invalidateTimers();
+            
+            
         }
     }
     
