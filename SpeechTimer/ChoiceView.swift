@@ -38,9 +38,10 @@ class ChoiceView: UIView, CheckBoxDelegate {
         
 
         //setup the checkbox
-        self.checkBoxWidth = frame.size.height *  0.25;
+        self.checkBoxWidth = frame.size.width;
+        
         self.checkBox = CheckBox(frame: CGRectMake(frame.size.width / 8.0, frame.size.height / 3.0,
-                                                    checkBoxWidth, checkBoxWidth));
+                                                    checkBoxWidth, frame.height));
         self.checkBoxContainerView = PositioningView(frame: CGRectMake(0,
                                                     frame.size.height / 3,
                                                     frame.size.width / 4,
