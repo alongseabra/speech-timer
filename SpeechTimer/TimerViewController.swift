@@ -15,6 +15,8 @@ The ViewController for the timing scene.
 **/
 class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     
+    let meterLevel = -25;
+    
     //The actual time that is displayed
     @IBOutlet weak var displayTimeLabel: UILabel!;
     
@@ -46,6 +48,8 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     var inputTimer : NSTimer = NSTimer();
     
     var listenForSilenceTimer : NSTimer = NSTimer();
+    
+    var
     
     @IBOutlet weak var progressLabel: UILabel!
     //The timer that keeps time
@@ -86,7 +90,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     {
         self.recorder.updateMeters();
         //println("Average input: \(recorder.averagePowerForChannel(0)) Peak input: \(recorder.peakPowerForChannel(0))");
-        if (self.recorder.peakPowerForChannel(0) > -15)
+        if (self.recorder.peakPowerForChannel(0) > -25)
         {
             self.inputTimer.invalidate();
             start();
@@ -155,10 +159,9 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         
         let minutes = UInt8(self.elapsedTime! / 60.0);
         
-        self.elapsedTime = self.elapsedTime?.advancedBy(-(NSTimeInterval(minutes) * 60));
+        //self.elapsedTime = self.elapsedTime?.advancedBy(-(NSTimeInterval(minutes) * 60));
         
-        
-        let seconds = UInt8(self.elapsedTime!);
+        let seconds = UInt8(self.elapsedTime! - Double(minutes) * 60);
         
         //self.elapsedTime = self.elapsedTime!.advancedBy(-(NSTimeInterval(seconds)));
         
@@ -195,7 +198,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
             elapsedSeconds = numberOfSecondsBeforeStop! / 100;
         }
         self.progressLabel.text = "\(elapsedSeconds)" + " seconds until stop";
-        if (self.recorder.averagePowerForChannel(0) < -25)
+        if (self.recorder.peakPowerForChannel(0) < -40)
         {
             println(self.recorder.averagePowerForChannel(0))
             self.numberOfSecondsSilent++
