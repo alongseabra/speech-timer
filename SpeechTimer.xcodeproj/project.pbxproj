@@ -16,6 +16,12 @@
 		2A3DDF5B1ACF92E900EC9EF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A3DDF5A1ACF92E900EC9EF7 /* Images.xcassets */; };
 		2A3DDF5E1ACF92E900EC9EF7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3DDF5C1ACF92E900EC9EF7 /* LaunchScreen.xib */; };
 		2A3DDF6A1ACF92E900EC9EF7 /* SpeechTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3DDF691ACF92E900EC9EF7 /* SpeechTimerTests.swift */; };
+		2A69FDA81BA71B39001E9611 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A69FDA61BA71B39001E9611 /* Bariol_Regular.otf */; };
+		2A69FDA91BA71B39001E9611 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 2A69FDA71BA71B39001E9611 /* Icon */; };
+		2A69FDAB1BA71BEE001E9611 /* Bariol_Regular_Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A69FDAA1BA71B46001E9611 /* Bariol_Regular_Italic.otf */; };
+		2A69FDAC1BA71C04001E9611 /* Bariol_Regular_Italic.otf in Sources */ = {isa = PBXBuildFile; fileRef = 2A69FDAA1BA71B46001E9611 /* Bariol_Regular_Italic.otf */; };
+		2A69FDAD1BA71C0A001E9611 /* Bariol_Regular.otf in Sources */ = {isa = PBXBuildFile; fileRef = 2A69FDA61BA71B39001E9611 /* Bariol_Regular.otf */; };
+		2A8EAC5B1BA63DBB001BB00C /* DLRadioButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 2AC42EA51BA62CCF00E9D595 /* DLRadioButton.h */; };
 		2AA70DD21AD0435C00D6136A /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA70DD11AD0435C00D6136A /* SetupViewController.swift */; };
 		2AA70DD41AD04B0500D6136A /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA70DD31AD04B0500D6136A /* CheckBox.swift */; };
 		2AA70DD61AD07F0900D6136A /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA70DD51AD07F0900D6136A /* ChoiceView.swift */; };
@@ -46,9 +52,13 @@
 		2A3DDF631ACF92E900EC9EF7 /* SpeechTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeechTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3DDF681ACF92E900EC9EF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A3DDF691ACF92E900EC9EF7 /* SpeechTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTimerTests.swift; sourceTree = "<group>"; };
+		2A69FDA61BA71B39001E9611 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = Bariol_Regular/Bariol_Regular.otf; sourceTree = "<group>"; };
+		2A69FDA71BA71B39001E9611 /* Icon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
+		2A69FDAA1BA71B46001E9611 /* Bariol_Regular_Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular_Italic.otf; path = Bariol_Regular/Bariol_Regular_Italic.otf; sourceTree = "<group>"; };
 		2AA70DD11AD0435C00D6136A /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		2AA70DD31AD04B0500D6136A /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		2AA70DD51AD07F0900D6136A /* ChoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
+		2ABA1E081BA64306003D3C08 /* DLRadioButtonBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLRadioButtonBridge.h; sourceTree = "<group>"; };
 		2AC42EA51BA62CCF00E9D595 /* DLRadioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		2AC42EA61BA62D0400E9D595 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +84,9 @@
 		2A3DDF451ACF92E800EC9EF7 = {
 			isa = PBXGroup;
 			children = (
+				2A69FDAA1BA71B46001E9611 /* Bariol_Regular_Italic.otf */,
+				2A69FDA61BA71B39001E9611 /* Bariol_Regular.otf */,
+				2A69FDA51BA71B39001E9611 /* Bariol_Regular */,
 				2A3DDF501ACF92E800EC9EF7 /* SpeechTimer */,
 				2A3DDF661ACF92E900EC9EF7 /* SpeechTimerTests */,
 				2A3DDF4F1ACF92E800EC9EF7 /* Products */,
@@ -96,6 +109,7 @@
 				2A3DDF571ACF92E900EC9EF7 /* Main.storyboard */,
 				2AA70DD51AD07F0900D6136A /* ChoiceView.swift */,
 				2AC42EA51BA62CCF00E9D595 /* DLRadioButton.h */,
+				2ABA1E081BA64306003D3C08 /* DLRadioButtonBridge.h */,
 				2AC42EA61BA62D0400E9D595 /* DLRadioButton.m */,
 				2A0E79491AD378500062424B /* ChoiceContainerView.swift */,
 				2A0E79471AD3719E0062424B /* PositioningView.swift */,
@@ -133,6 +147,14 @@
 				2A3DDF681ACF92E900EC9EF7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2A69FDA51BA71B39001E9611 /* Bariol_Regular */ = {
+			isa = PBXGroup;
+			children = (
+				2A69FDA71BA71B39001E9611 /* Icon */,
+			);
+			path = Bariol_Regular;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +238,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A3DDF591ACF92E900EC9EF7 /* Main.storyboard in Resources */,
+				2A69FDA91BA71B39001E9611 /* Icon in Resources */,
 				2A3DDF5E1ACF92E900EC9EF7 /* LaunchScreen.xib in Resources */,
 				2A3DDF5B1ACF92E900EC9EF7 /* Images.xcassets in Resources */,
+				2A69FDA81BA71B39001E9611 /* Bariol_Regular.otf in Resources */,
+				2A69FDAB1BA71BEE001E9611 /* Bariol_Regular_Italic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A69FDAD1BA71C0A001E9611 /* Bariol_Regular.otf in Sources */,
+				2A69FDAC1BA71C04001E9611 /* Bariol_Regular_Italic.otf in Sources */,
+				2A8EAC5B1BA63DBB001BB00C /* DLRadioButton.h in Sources */,
 				2AA70DD41AD04B0500D6136A /* CheckBox.swift in Sources */,
 				2A3DDF561ACF92E900EC9EF7 /* ViewController.swift in Sources */,
 				2A0E794A1AD378500062424B /* ChoiceContainerView.swift in Sources */,
@@ -371,6 +399,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = SpeechTimer/DLRadioButtonBridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +413,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = SpeechTimer/DLRadioButtonBridge.h;
 			};
 			name = Release;
 		};

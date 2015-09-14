@@ -12,14 +12,17 @@ import UIKit
 /**
 The ViewController for the setup scene
 **/
-class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContainerViewDelegate {
+class SetupViewController: UIViewController, UIPickerViewDelegate  {
 
 
 
+    @IBOutlet var manualStopRadio: DLRadioButton!
 
+    @IBOutlet var automaticStopRadio: DLRadioButton!
 
     @IBOutlet weak var BackButton: UIButton!
     
+    @IBOutlet var nextScreenButton: UIButton!
     
     //The view containing items that indicate the user would like to stop
     //the timer manually
@@ -39,6 +42,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
     var finishTimeStepper : UIStepper?;
     
     var userWantsManual : Bool?;
+    var readyToGoToNextScreen : Bool?
     
     var micSensitivitySlider : UISlider?;
     
@@ -49,22 +53,6 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
 
         super.viewDidLoad();
 
-        self.choiceContainerView = ChoiceContainerView(frame: CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height / 4));
-        
-        setDelegates();
-
-        self.manualChoice = ChoiceView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 8), choice: "manual");
-        self.automaticChoice = ChoiceView(frame: CGRectMake(0, self.view.frame.size.height / 8,
-                                                            self.view.frame.size.width, self.view.frame.size.height / 8 ),
-                                          choice: "automatic");
-
-        self.choiceContainerView?.addChoiceView(self.manualChoice!);
-        self.choiceContainerView?.addChoiceView(self.automaticChoice!);
-    
-        self.manualChoice?.label.text = "Manual";
-        self.automaticChoice?.label.text = "Automatic";
-        self.view.addSubview(self.choiceContainerView!);
-        
         
         self.finishTimeLabelContainerView = UIView(frame: CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, self.view.frame.size.height / 8));
         self.finishTimeLabel = UILabel(frame:
@@ -81,15 +69,28 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         self.finishTimeStepper?.addTarget(self, action: "stepperPressed", forControlEvents: .TouchUpInside);
         
 
+        self.disableFinishTimeLabel();
+        self.nextScreenButton.enabled = false;
         
         //call initially to set value
         updateFinishTimeLabel();
+        
+        
     
-        self.choiceContainerView?.choices[0].checkBox.isChecked = true;
-
 
     }
     
+    @IBAction func manualStopTapped(sender: AnyObject) {
+        self.userWantsManual = true;
+        self.disableFinishTimeLabel();
+        enableNextScreenButton();
+    }
+    
+    @IBAction func automaticStopTapped(sender: AnyObject) {
+        self.userWantsManual = false;
+        self.enableFinishTimeLabel();
+        enableNextScreenButton();
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toTimer")
         {
@@ -105,26 +106,10 @@ class SetupViewController: UIViewController, UIPickerViewDelegate, ChoiceContain
         }
     }
 
-    
-    //Highest level of delegation chain, checkbox has been checked
-    func choiceViewSelected(choiceView: ChoiceView) {
-        
-        if (choiceView.choice == "manual") {
-            self.userWantsManual = true;
-            self.disableFinishTimeLabel();
-        } else {
-            self.userWantsManual = false;
-            self.enableFinishTimeLabel();
-        }
-    
-    }
-    
-    
-    func setDelegates()
+    func enableNextScreenButton()
     {
-        self.choiceContainerView?.delegate = self;
+        self.nextScreenButton.enabled = true;
     }
-    
     func stepperPressed()
     {
         updateFinishTimeLabel();
