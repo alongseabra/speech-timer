@@ -60,7 +60,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var instructionLabel: UILabel!
     
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         
         if ((self.recorder) != nil) {
             recorder.deleteRecording();
@@ -83,6 +83,8 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
                 self.autoStopIndicator.textColor = UIColor.redColor();
             } else {
                 self.autoStopIndicator.hidden = true;
+                self.progressLabel.hidden = true;
+                self.progressTilStop.hidden = true;
             }
 
         } else {

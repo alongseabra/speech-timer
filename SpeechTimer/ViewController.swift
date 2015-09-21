@@ -10,18 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var LogoLabel: UILabel!
-    @IBOutlet weak var TimeMeButton: UIButton!
-    @IBOutlet weak var MoreInfoButton: UIButton!
+    @IBOutlet var logoLabel: UILabel!
+    @IBOutlet var nextScreenButton: UIButton!
+    @IBOutlet var twitterButton: UIButton!
     
+    @IBOutlet var mainImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+       // self.TimeMeButton.layer.cornerRadius =
+        nextScreenButton.layer.cornerRadius = 20;
 
 
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

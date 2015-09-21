@@ -36,10 +36,9 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
     var choiceContainerView : ChoiceContainerView?;
     
     //Contains view that has automatic time options
-    var finishTimeLabelContainerView : UIView?;
-    
-    var finishTimeLabel : UILabel?;
-    var finishTimeStepper : UIStepper?;
+    @IBOutlet var finishTimeLabelContainerView : UIView?;
+    @IBOutlet var finishTimeLabel : UILabel?;
+    @IBOutlet var finishTimeStepper : UIStepper?;
     
     var userWantsManual : Bool?;
     var readyToGoToNextScreen : Bool?
@@ -48,27 +47,20 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
     
     @IBOutlet weak var ContinueButton: UIButton!
 
+    let labelFont = UIFont(name: "Bariol-Regular", size: 15.0);
     
     override func viewDidLoad() {
 
         super.viewDidLoad();
-
         
-        self.finishTimeLabelContainerView = UIView(frame: CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, self.view.frame.size.height / 8));
-        self.finishTimeLabel = UILabel(frame:
-            CGRectMake(0, 0, self.view.frame.size.width * 0.75, self.view.frame.size.height / 8));
+        self.nextScreenButton.layer.cornerRadius = 20;
         
-        self.finishTimeLabel?.backgroundColor = UIColor.greenColor();
-        self.view.addSubview(finishTimeLabelContainerView!);
-        self.finishTimeLabelContainerView?.addSubview(self.finishTimeLabel!);
+        let yStart = self.view.frame.size.height * 0.57;
+        let xStart = CGFloat(0.0);
+        let containerWidth = self.view.frame.size.width;
+        let containerHeight = self.view.frame.size.height / 8;
         
-        self.finishTimeStepper = UIStepper(frame: CGRectMake(self.view.frame.size.width * 0.75, 50, 100, 50));
-        self.finishTimeStepper?.minimumValue = 5.0;
-        self.finishTimeStepper?.maximumValue = 15.0;
-        self.finishTimeLabelContainerView?.addSubview(self.finishTimeStepper!);
-        self.finishTimeStepper?.addTarget(self, action: "stepperPressed", forControlEvents: .TouchUpInside);
         
-
         self.disableFinishTimeLabel();
         self.nextScreenButton.enabled = false;
         
@@ -106,14 +98,15 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
         }
     }
 
+    @IBAction func stepperPressed(sender: AnyObject) {
+        updateFinishTimeLabel();
+
+    }
     func enableNextScreenButton()
     {
         self.nextScreenButton.enabled = true;
     }
-    func stepperPressed()
-    {
-        updateFinishTimeLabel();
-    }
+    
     
     func updateFinishTimeLabel()
     {
@@ -125,7 +118,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
     func disableFinishTimeLabel()
     {
         self.finishTimeLabelContainerView?.userInteractionEnabled = false;
-        self.finishTimeLabelContainerView?.alpha = 0.5;
+        self.finishTimeLabelContainerView?.alpha = 0.3;
     }
     
     func enableFinishTimeLabel()
