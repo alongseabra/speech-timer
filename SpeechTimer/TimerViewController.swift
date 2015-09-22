@@ -22,6 +22,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
     @IBOutlet weak var autoStopIndicator: UILabel!
     
     
@@ -29,8 +30,8 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     var numberOfSecondsBeforeStop: Int?; //total 100ths of seconds of silence before recording stops
     var numberOfSecondsSilent: Int = 0; //total 100ths of second that app has detected since last sound
     
-    var recorder: AVAudioRecorder!
-
+    var recorder: AVAudioRecorder!;
+    var timerRunning = false;
     
     var mode : String?;
     
@@ -62,6 +63,13 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
 
     override func viewWillAppear(animated: Bool) {
         
+        setup();
+        
+        super.viewDidLoad();
+   }
+    
+    func setup()
+    {
         if ((self.recorder) != nil) {
             recorder.deleteRecording();
         }
@@ -77,6 +85,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         self.startTime = 0.0;
         self.elapsedTime = 0.0;
         self.previousTime = -1;
+        self.stopButton.hidden = true;
         
         if (self.mode != nil) {
             if (self.mode == "automatic") {
@@ -86,21 +95,18 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
                 self.progressLabel.hidden = true;
                 self.progressTilStop.hidden = true;
             }
-
+            
         } else {
             print("mode is nil");
         }
-        
-        super.viewDidLoad();
-   }
-    
+    }
     func levelTimerCallback()
     {
+        println("checking levels");
         self.recorder.updateMeters();
         //println("Average input: \(recorder.averagePowerForChannel(0)) Peak input: \(recorder.peakPowerForChannel(0))");
         if (self.recorder.peakPowerForChannel(0) > -25)
         {
-            self.inputTimer.invalidate();
             start();
             
         }
@@ -116,8 +122,11 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     //Starts the timer
     @IBAction func start()
     {
-        //self.recorder.stop();
         self.startButton.hidden = true;
+        self.stopButton.hidden = false;
+        
+        self.inputTimer.invalidate();
+        self.startButton.enabled = false;
         
         let aSelector : Selector = "updateTime";
         
@@ -128,6 +137,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
 
         self.startTime = NSDate.timeIntervalSinceReferenceDate();
  
+        self.timerRunning = true;
 
         
         if (self.mode == "automatic")
@@ -139,18 +149,31 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func stop()
     {
-        self.timer.invalidate();
-        self.inputTimer.invalidate();
-        self.listenForSilenceTimer.invalidate();
-        self.startButton.hidden = false;
-        self.previousTime = -1;
-        if (self.mode == "automatic")
-        {
-            self.numberOfSecondsSilent = 0;
+        if (self.timerRunning) {
+            self.startButton.hidden = false;
+            self.stopButton.hidden = true;
+            self.timer.invalidate();
+            self.inputTimer.invalidate();
+            self.listenForSilenceTimer.invalidate();
+            self.startButton.enabled = true;
+            self.previousTime = -1;
+            if (self.mode == "automatic")
+            {
+                self.numberOfSecondsSilent = 0;
+            }
+            self.timerRunning = false;
         }
+
         
     }
     
+    @IBAction func reset(sender: AnyObject) {
+        
+        stop();
+        invalidateTimers();
+        setup();
+        
+    }
     //Updates the timer each second
     func updateTime()
     {
@@ -179,8 +202,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
 
         previousTime = currentTime;
         
-        println(self.elapsedTime);
-            
+        
         
         let strMinutes = minutes > 9 ? String(minutes): "0" + String(minutes);
         let strSeconds = seconds > 9 ? String(seconds): "0" + String(seconds);
@@ -206,9 +228,10 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
             elapsedSeconds = numberOfSecondsBeforeStop! / 100;
         }
         self.progressLabel.text = "\(elapsedSeconds)" + " seconds until stop";
-        if (self.recorder.peakPowerForChannel(0) < -40)
+        
+        println(self.recorder.peakPowerForChannel(0))
+        if (self.recorder.averagePowerForChannel(0) < -40)
         {
-            println(self.recorder.averagePowerForChannel(0))
             self.numberOfSecondsSilent++
             self.progressTilStop.progress = Float(numberOfSecondsSilent) / Float(numberOfSecondsBeforeStop!);
             
@@ -255,7 +278,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         if (segue.identifier == "toHome")
         {
             invalidateTimers();
-            
+            self.recorder = nil;
             
         }
     }
