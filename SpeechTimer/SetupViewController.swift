@@ -112,7 +112,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
     {
         var value = self.finishTimeStepper?.value;
         var stepperValue : String = String(format:"%.f", value!);
-        self.finishTimeLabel?.text = "I want the timer to stop after \(stepperValue) seconds";
+        self.finishTimeLabel?.text = "I want the timer to stop after \(stepperValue) seconds of silence";
     }
     
     func disableFinishTimeLabel()

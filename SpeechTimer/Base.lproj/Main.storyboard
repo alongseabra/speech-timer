@@ -21,6 +21,7 @@
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
         </mutableArray>
         <mutableArray key="Bariol_Regular_Italic.otf">
             <string>BariolRegular-Italic</string>
@@ -143,23 +144,32 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mgQ-iD-swR">
-                                <rect key="frame" x="16" y="270" width="288" height="81"/>
+                                <rect key="frame" x="0.0" y="270" width="320" height="102"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I want the timer to stop after 5 seconds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRB-HV-drW">
-                                        <rect key="frame" x="8" y="8" width="272" height="17"/>
-                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="8" width="320" height="17"/>
+                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minimumValue="7" maximumValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="AWB-13-v15">
-                                        <rect key="frame" x="97" y="47" width="94" height="29"/>
+                                        <rect key="frame" x="113" y="62" width="94" height="29"/>
                                         <color key="tintColor" red="0.41306549520000002" green="0.083019980359999995" blue="0.50965535640000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="stepperPressed:" destination="4by-ic-xZc" eventType="valueChanged" id="eVv-zf-nFd"/>
                                         </connections>
                                     </stepper>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="(The time will be subtracted back when you finish)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyQ-6w-LUh">
+                                        <rect key="frame" x="0.0" y="33" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="LyQ-6w-LUh" secondAttribute="centerX" id="vly-uU-M40"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="j6g-QV-Fli" customClass="DLRadioButton">
                                 <rect key="frame" x="16" y="161" width="288" height="126"/>
@@ -256,7 +266,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-gL-HAL">
-                                <rect key="frame" x="49" y="428" width="118" height="79"/>
+                                <rect key="frame" x="49" y="428" width="97" height="79"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="33"/>
                                 <state key="normal" title="stop">
                                     <color key="titleColor" red="0.50965535640716553" green="0.045491387494533506" blue="0.026031518209911248" alpha="1" colorSpace="calibratedRGB"/>
@@ -267,7 +277,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPg-XG-3Hn">
-                                <rect key="frame" x="49" y="428" width="118" height="79"/>
+                                <rect key="frame" x="49" y="428" width="97" height="79"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="33"/>
                                 <state key="normal" title="start">
                                     <color key="titleColor" red="0.22322070959896018" green="0.7052162247474747" blue="0.18404031818492111" alpha="1" colorSpace="calibratedRGB"/>
@@ -300,36 +310,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghv-sd-Js8">
-                                <rect key="frame" x="154" y="428" width="118" height="79"/>
+                                <rect key="frame" x="175" y="428" width="97" height="79"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="33"/>
                                 <state key="normal" title="reset">
                                     <color key="titleColor" red="0.41306549520000002" green="0.083019980359999995" blue="0.50965535640000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="reset:" destination="Ocy-oD-rHK" eventType="touchUpInside" id="F3Z-SN-J2N"/>
-                                    <action selector="start" destination="Ocy-oD-rHK" eventType="touchUpInside" id="Hqp-fo-CNh"/>
+                                    <action selector="reset:" destination="Ocy-oD-rHK" eventType="touchUpInside" id="MDC-qr-TE1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="DPg-XG-3Hn" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="1So-Kh-c2C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ghv-sd-Js8" secondAttribute="trailing" constant="32" id="2tX-5v-AgE"/>
                             <constraint firstAttribute="centerX" secondItem="MYn-bs-3Ph" secondAttribute="centerX" id="BFb-n7-I8f"/>
                             <constraint firstItem="qBP-1r-5fq" firstAttribute="top" secondItem="MYn-bs-3Ph" secondAttribute="bottom" constant="185" id="Cxc-c0-Dnl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DPg-XG-3Hn" secondAttribute="trailing" constant="137" id="F3H-hz-gDu"/>
-                            <constraint firstItem="2G4-gL-HAL" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="H3t-WO-hrA"/>
                             <constraint firstAttribute="centerX" secondItem="cQX-oN-TMp" secondAttribute="centerX" id="HCB-dL-DAH"/>
                             <constraint firstItem="qBP-1r-5fq" firstAttribute="top" secondItem="2G4-gL-HAL" secondAttribute="bottom" constant="61" id="IiM-RX-fMI"/>
                             <constraint firstItem="qBP-1r-5fq" firstAttribute="top" secondItem="sB4-u3-Mly" secondAttribute="bottom" constant="175" id="LEA-A8-V5g"/>
-                            <constraint firstItem="DPg-XG-3Hn" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="OYA-ke-5lb"/>
-                            <constraint firstItem="Ghv-sd-Js8" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="138" id="QiY-Sf-3oO"/>
                             <constraint firstItem="qBP-1r-5fq" firstAttribute="top" secondItem="Ghv-sd-Js8" secondAttribute="bottom" constant="61" id="VIQ-Nl-yuN"/>
                             <constraint firstAttribute="centerX" secondItem="sB4-u3-Mly" secondAttribute="centerX" id="Xgf-SF-LfF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2G4-gL-HAL" secondAttribute="trailing" constant="137" id="YBq-rD-58h"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ghv-sd-Js8" secondAttribute="trailing" constant="32" id="exz-xj-R2s"/>
                             <constraint firstAttribute="centerY" secondItem="Jml-wE-YBb" secondAttribute="centerY" id="fIA-F5-phR"/>
                             <constraint firstItem="qBP-1r-5fq" firstAttribute="top" secondItem="DPg-XG-3Hn" secondAttribute="bottom" constant="61" id="tBO-7w-Dig"/>
                             <constraint firstAttribute="centerX" secondItem="Jml-wE-YBb" secondAttribute="centerX" id="uT6-Ai-6yZ"/>
+                            <constraint firstItem="2G4-gL-HAL" firstAttribute="leading" secondItem="qn1-oG-F7P" secondAttribute="leadingMargin" constant="33" id="uiP-VW-Qe3"/>
                             <constraint firstAttribute="centerX" secondItem="Q5u-v6-Gkk" secondAttribute="centerX" id="yeI-8I-P8A"/>
                         </constraints>
                     </view>

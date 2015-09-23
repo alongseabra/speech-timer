@@ -31,24 +31,19 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     var numberOfSecondsSilent: Int = 0; //total 100ths of second that app has detected since last sound
     
     var recorder: AVAudioRecorder!;
+    var startSoundTimer : NSTimer!;
+    var timeIncrementTimer : NSTimer!;
+    var listenForSilenceTimer : NSTimer!;
     var timerRunning = false;
+    var timerStarted = false; // for when the timer is started then stopped
     
     var mode : String?;
     
-    //The date-time the timer is started
+    var previousTime : NSTimeInterval? = -1;
     var startTime : NSTimeInterval?;
+    var elapsedTime : NSTimeInterval = 0.0;
+    var timeIncrementInterval : NSTimeInterval?;
     
-    //for if the timer is stopped than started again
-    var elapsedTime : NSTimeInterval?;
-    
-    //With each new time-update, the previous value gets stored here
-    var previousTime : NSTimeInterval?;
-
-    //The timer that "listens" for when input noise dies down, if
-    //user should excersize this option
-    var inputTimer : NSTimer = NSTimer();
-    
-    var listenForSilenceTimer : NSTimer = NSTimer();
     
     var recordingPath : String?;
     
@@ -63,30 +58,13 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
 
     override func viewWillAppear(animated: Bool) {
         
-        setup();
-        
-        super.viewDidLoad();
-   }
-    
-    func setup()
-    {
-        if ((self.recorder) != nil) {
-            recorder.deleteRecording();
-        }
         setupRecorder();
-        
         var error: NSError?;
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: &error);
         
-        
-        self.inputTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: "levelTimerCallback", userInfo: nil, repeats: true);
+        self.startSoundTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: "startSoundTimerCallback", userInfo: nil, repeats: true);
         self.recorder.record();
-        
-        self.startTime = 0.0;
-        self.elapsedTime = 0.0;
-        self.previousTime = -1;
-        self.stopButton.hidden = true;
-        
+
         if (self.mode != nil) {
             if (self.mode == "automatic") {
                 self.autoStopIndicator.textColor = UIColor.redColor();
@@ -99,8 +77,21 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         } else {
             print("mode is nil");
         }
-    }
-    func levelTimerCallback()
+        
+        self.stopButton.hidden = true;
+        self.resetButton.enabled = false;
+        
+        if (self.mode == "automatic")
+        {
+            self.progressTilStop.progress = 0;
+            self.progressLabel.text = "\(Int(numberOfSecondsBeforeStop! / 100))" + " seconds until stop";
+        }
+
+        
+        super.viewDidLoad();
+   }
+    
+      func startSoundTimerCallback()
     {
         println("checking levels");
         self.recorder.updateMeters();
@@ -108,105 +99,100 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         if (self.recorder.peakPowerForChannel(0) > -25)
         {
             start();
-            
         }
     }
     
-    func listenForSilence()
-    {
-        self.listenForSilenceTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "levelTimerCallbackForEnd", userInfo: nil, repeats: true);
-        
-    }
+//    func listenForSilence()
+//    {
+//        self.listenForSilenceTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "levelTimerCallbackForEnd", userInfo: nil, repeats: true);
+//        
+//    }
     
     
     //Starts the timer
     @IBAction func start()
     {
-        self.startButton.hidden = true;
-        self.stopButton.hidden = false;
+        //for if the start button is pressed
+        self.startSoundTimer.invalidate();
         
-        self.inputTimer.invalidate();
-        self.startButton.enabled = false;
         
-        let aSelector : Selector = "updateTime";
-        
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true);
-        
-        self.instructionLabel.hidden = true;
-        
+        if (!self.timerRunning) {
+            
+            if (!self.timerStarted) {
+                self.startTime = NSDate.timeIntervalSinceReferenceDate();
 
-        self.startTime = NSDate.timeIntervalSinceReferenceDate();
- 
-        self.timerRunning = true;
+            }
+            self.instructionLabel.hidden = true;
+            if (self.mode == "automatic") {
+                self.listenForSilenceTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "levelTimerCallbackForEnd", userInfo: nil, repeats: true);
+            }
+            
+            keepTrackOfTime();
+            self.startButton.hidden = true;
+            self.stopButton.hidden = false;
+            self.timerRunning = true;
+            self.resetButton.enabled = true;
 
-        
-        if (self.mode == "automatic")
-        {
-            listenForSilence();
         }
-        
+
     }
     
     @IBAction func stop()
     {
-        if (self.timerRunning) {
-            self.startButton.hidden = false;
-            self.stopButton.hidden = true;
-            self.timer.invalidate();
-            self.inputTimer.invalidate();
+        self.timerRunning = false;
+        self.timerStarted = true;
+        if (self.mode == "automatic") {
             self.listenForSilenceTimer.invalidate();
-            self.startButton.enabled = true;
-            self.previousTime = -1;
-            if (self.mode == "automatic")
-            {
-                self.numberOfSecondsSilent = 0;
-            }
-            self.timerRunning = false;
         }
-
+        self.timeIncrementTimer.invalidate();
+        
+        self.startButton.hidden = false;
+        self.stopButton.hidden = true;
+        if (self.elapsedTime == 0) {
+            self.resetButton.hidden = false;
+            self.timerStarted = false;
+        }
+        
         
     }
     
     @IBAction func reset(sender: AnyObject) {
         
-        stop();
-        invalidateTimers();
-        setup();
+        if (self.timerRunning) {
+            stop();
+        }
         
+        self.elapsedTime = 0.0;
+        self.numberOfSecondsSilent = 0;
+        if (self.mode == "automatic")
+        {
+            self.progressLabel.text = "\(Int(numberOfSecondsBeforeStop! / 100))" + " seconds until stop";
+            self.progressTilStop.progress = 0;
+        }
+        self.displayTimeLabel.text = "00:00";
+        self.startSoundTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: "startSoundTimerCallback", userInfo: nil, repeats: true);
+        self.instructionLabel.hidden = false;
+        
+
+        
+    }
+    
+    func keepTrackOfTime()
+    {
+        self.timeIncrementTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTime", userInfo: nil, repeats: true);
     }
     //Updates the timer each second
     func updateTime()
     {
-        if (previousTime == -1) {//first iteration
         
-            previousTime = startTime;
-        }
+        self.elapsedTime = self.elapsedTime.advancedBy(0.01);
         
-        var currentTime = NSDate.timeIntervalSinceReferenceDate();
+        let minutes = UInt8(self.elapsedTime / 60.0);
         
-        var sinceLast: NSTimeInterval = currentTime - previousTime!;
-        
-        self.elapsedTime = self.elapsedTime?.advancedBy(sinceLast);
-        
-        let minutes = UInt8(self.elapsedTime! / 60.0);
-        
-        //self.elapsedTime = self.elapsedTime?.advancedBy(-(NSTimeInterval(minutes) * 60));
-        
-        let seconds = UInt8(self.elapsedTime! - Double(minutes) * 60);
-        
-        //self.elapsedTime = self.elapsedTime!.advancedBy(-(NSTimeInterval(seconds)));
-        
-        
-        //let fraction = UInt8(self.elapsedTime! * 100);
-        
-
-        previousTime = currentTime;
-        
-        
+        let seconds = UInt8(self.elapsedTime - Double(minutes) * 60);
         
         let strMinutes = minutes > 9 ? String(minutes): "0" + String(minutes);
         let strSeconds = seconds > 9 ? String(seconds): "0" + String(seconds);
-        //let strFraction = fraction > 9 ? String(fraction): "0" + String(fraction);
         
         self.displayTimeLabel.text = "\(strMinutes):\(strSeconds)";
         
@@ -215,10 +201,8 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     func  levelTimerCallbackForEnd()
     {
         self.recorder.updateMeters()
-        
         if (self.numberOfSecondsSilent >= self.numberOfSecondsBeforeStop)
         {
-            //print("invalidating")
             stop();
         }
         
@@ -241,7 +225,6 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
             self.numberOfSecondsSilent = 0
             self.progressTilStop.progress = 0;
         }
-        //println(numberOfSecondsSilent)
         
     }
     
@@ -267,18 +250,16 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func invalidateTimers()
-    {
-        self.inputTimer.invalidate();
-        self.timer.invalidate();
-        self.listenForSilenceTimer.invalidate();
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toHome")
         {
-            invalidateTimers();
-            self.recorder = nil;
+            if (self.timerStarted) {
+                self.timeIncrementTimer.invalidate();
+            }
+            if (self.mode == "automatic") {
+                self.listenForSilenceTimer.invalidate();
+            }
+
             
         }
     }
