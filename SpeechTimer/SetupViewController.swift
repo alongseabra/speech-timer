@@ -23,17 +23,8 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
     @IBOutlet weak var BackButton: UIButton!
     
     @IBOutlet var nextScreenButton: UIButton!
-    
-    //The view containing items that indicate the user would like to stop
-    //the timer manually
-    var manualChoice : ChoiceView?;
-    
-    //The view containing items that indicate the user would like to stop
-    //the timer automatically
-    var automaticChoice : ChoiceView?;
-    
-    //The view containing the choices
-    var choiceContainerView : ChoiceContainerView?;
+
+
     
     //Contains view that has automatic time options
     @IBOutlet var finishTimeLabelContainerView : UIView?;
@@ -69,8 +60,6 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
         //call initially to set value
         updateFinishTimeLabel();
         
-        
-    
 
     }
     
