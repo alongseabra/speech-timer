@@ -64,6 +64,8 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
         self.disableFinishTimeLabel();
         self.nextScreenButton.enabled = false;
         
+        self.nextScreenButton.alpha = 0.3;
+        
         //call initially to set value
         updateFinishTimeLabel();
         
@@ -105,6 +107,7 @@ class SetupViewController: UIViewController, UIPickerViewDelegate  {
     func enableNextScreenButton()
     {
         self.nextScreenButton.enabled = true;
+        self.nextScreenButton.alpha = 1.0;
     }
     
     

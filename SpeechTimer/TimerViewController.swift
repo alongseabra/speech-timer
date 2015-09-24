@@ -36,6 +36,7 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
     var listenForSilenceTimer : NSTimer!;
     var timerRunning = false;
     var timerStarted = false; // for when the timer is started then stopped
+    var fullyStopped = false;
     
     var mode : String?;
     
@@ -102,11 +103,6 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-//    func listenForSilence()
-//    {
-//        self.listenForSilenceTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "levelTimerCallbackForEnd", userInfo: nil, repeats: true);
-//        
-//    }
     
     
     //Starts the timer
@@ -120,7 +116,6 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
             
             if (!self.timerStarted) {
                 self.startTime = NSDate.timeIntervalSinceReferenceDate();
-
             }
             self.instructionLabel.hidden = true;
             if (self.mode == "automatic") {
@@ -168,12 +163,16 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         {
             self.progressLabel.text = "\(Int(numberOfSecondsBeforeStop! / 100))" + " seconds until stop";
             self.progressTilStop.progress = 0;
+            if (self.fullyStopped == true) {
+                self.startButton.hidden = false;
+                self.fullyStopped = false;
+            }
         }
         self.displayTimeLabel.text = "00:00";
         self.startSoundTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: "startSoundTimerCallback", userInfo: nil, repeats: true);
         self.instructionLabel.hidden = false;
         
-
+        
         
     }
     
@@ -204,6 +203,11 @@ class TimerViewController: UIViewController, AVAudioRecorderDelegate {
         if (self.numberOfSecondsSilent >= self.numberOfSecondsBeforeStop)
         {
             stop();
+            self.fullyStopped = true;
+            var timeToSubtract = Double(-self.numberOfSecondsBeforeStop!) / 100;
+            self.elapsedTime = self.elapsedTime.advancedBy(timeToSubtract);
+            self.startButton.hidden = true;
+            updateTime();
         }
         
         var elapsedSeconds : Int = (numberOfSecondsBeforeStop! - numberOfSecondsSilent) / 100 + 1 ;

@@ -42,7 +42,7 @@
 		2A06DF4A1AD99B450097B047 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		2A0E79471AD3719E0062424B /* PositioningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositioningView.swift; sourceTree = "<group>"; };
 		2A0E79491AD378500062424B /* ChoiceContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceContainerView.swift; sourceTree = "<group>"; };
-		2A3DDF4E1ACF92E800EC9EF7 /* SpeechTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeechTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A3DDF4E1ACF92E800EC9EF7 /* timeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3DDF521ACF92E900EC9EF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A3DDF531ACF92E900EC9EF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A3DDF551ACF92E900EC9EF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		2A3DDF4F1ACF92E800EC9EF7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2A3DDF4E1ACF92E800EC9EF7 /* SpeechTimer.app */,
+				2A3DDF4E1ACF92E800EC9EF7 /* timeMe.app */,
 				2A3DDF631ACF92E900EC9EF7 /* SpeechTimerTests.xctest */,
 			);
 			name = Products;
@@ -174,7 +174,7 @@
 			);
 			name = SpeechTimer;
 			productName = SpeechTimer;
-			productReference = 2A3DDF4E1ACF92E800EC9EF7 /* SpeechTimer.app */;
+			productReference = 2A3DDF4E1ACF92E800EC9EF7 /* timeMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2A3DDF621ACF92E900EC9EF7 /* SpeechTimerTests */ = {
@@ -398,7 +398,7 @@
 				INFOPLIST_FILE = SpeechTimer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = timeMe;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = SpeechTimer/DLRadioButtonBridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -412,7 +412,7 @@
 				INFOPLIST_FILE = SpeechTimer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = timeMe;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = SpeechTimer/DLRadioButtonBridge.h;
 			};
 			name = Release;
